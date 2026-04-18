@@ -1,0 +1,22 @@
+{
+  "name": "mmm-bin-days",
+  "version": "1.0.0",
+  "description": "MagicMirror module that displays upcoming household bin collections, backed by Supabase.",
+  "main": "MMM-Bin-Days.js",
+  "scripts": {
+    "build": "node -e \"const fs=require('fs');['MMM-Bin-Days.js','MMM-Bin-Days.css','node_helper.js'].forEach(f=>{if(!fs.existsSync(f))throw new Error('Missing '+f);});console.log('MMM-Bin-Days: all module files present.');\""
+  },
+  "keywords": [
+    "MagicMirror",
+    "magic-mirror",
+    "module",
+    "bins",
+    "waste",
+    "recycling",
+    "supabase"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}

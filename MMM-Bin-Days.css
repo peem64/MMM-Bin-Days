@@ -61,6 +61,12 @@
   display: inline-block;
 }
 
+.bindays-bin-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
 .bindays-error {
   color: #ff8080;
 }

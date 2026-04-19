@@ -85,11 +85,93 @@ Module.register("MMM-Bin-Days", {
     return `${days[date.getDay()]} ${date.getDate()} ${months[date.getMonth()]}`;
   },
 
+  hexForColor: function (color) {
+    if (!color) return "#6b7280";
+    if (typeof color === "string" && color.charAt(0) === "#") return color;
+    const map = {
+      black: "#1f2937",
+      blue: "#2563eb",
+      green: "#16a34a",
+      brown: "#92400e",
+      red: "#dc2626",
+      yellow: "#ca8a04",
+      purple: "#7e22ce",
+      gray: "#6b7280"
+    };
+    return map[String(color).toLowerCase()] || color;
+  },
+
   binSwatch: function (color) {
-    const swatch = document.createElement("span");
-    swatch.className = "bindays-swatch";
-    swatch.style.backgroundColor = color || "#888";
-    return swatch;
+    const hex = this.hexForColor(color);
+    const svgNs = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(svgNs, "svg");
+    svg.setAttribute("viewBox", "0 0 24 24");
+    svg.setAttribute("class", "bindays-bin-icon");
+    svg.setAttribute("width", "18");
+    svg.setAttribute("height", "18");
+
+    const stroke = "rgba(0,0,0,0.4)";
+
+    const handle = document.createElementNS(svgNs, "rect");
+    handle.setAttribute("x", "2.5");
+    handle.setAttribute("y", "6");
+    handle.setAttribute("width", "19");
+    handle.setAttribute("height", "2.2");
+    handle.setAttribute("rx", "0.6");
+    handle.setAttribute("fill", hex);
+    handle.setAttribute("stroke", stroke);
+    handle.setAttribute("stroke-width", "0.4");
+    svg.appendChild(handle);
+
+    const lid = document.createElementNS(svgNs, "path");
+    lid.setAttribute(
+      "d",
+      "M6 2.2 H18 a1.3 1.3 0 0 1 1.3 1.3 V5 H4.7 V3.5 A1.3 1.3 0 0 1 6 2.2 Z"
+    );
+    lid.setAttribute("fill", hex);
+    lid.setAttribute("stroke", stroke);
+    lid.setAttribute("stroke-width", "0.4");
+    svg.appendChild(lid);
+
+    const body = document.createElementNS(svgNs, "path");
+    body.setAttribute(
+      "d",
+      "M4.8 8.4 H19.2 L18.1 20.2 A1.4 1.4 0 0 1 16.7 21.5 H7.3 A1.4 1.4 0 0 1 5.9 20.2 Z"
+    );
+    body.setAttribute("fill", hex);
+    body.setAttribute("stroke", "rgba(0,0,0,0.45)");
+    body.setAttribute("stroke-width", "0.5");
+    svg.appendChild(body);
+
+    const ridges = [
+      { x1: "9", x2: "8.4" },
+      { x1: "12", x2: "12" },
+      { x1: "15", x2: "15.6" }
+    ];
+    ridges.forEach((r) => {
+      const line = document.createElementNS(svgNs, "line");
+      line.setAttribute("x1", r.x1);
+      line.setAttribute("y1", "10.5");
+      line.setAttribute("x2", r.x2);
+      line.setAttribute("y2", "19.5");
+      line.setAttribute("stroke", "rgba(0,0,0,0.3)");
+      line.setAttribute("stroke-width", "0.5");
+      line.setAttribute("stroke-linecap", "round");
+      svg.appendChild(line);
+    });
+
+    [8, 16].forEach((cx) => {
+      const wheel = document.createElementNS(svgNs, "circle");
+      wheel.setAttribute("cx", String(cx));
+      wheel.setAttribute("cy", "22");
+      wheel.setAttribute("r", "1.1");
+      wheel.setAttribute("fill", "#111");
+      wheel.setAttribute("stroke", "rgba(255,255,255,0.15)");
+      wheel.setAttribute("stroke-width", "0.3");
+      svg.appendChild(wheel);
+    });
+
+    return svg;
   },
 
   getDom: function () {

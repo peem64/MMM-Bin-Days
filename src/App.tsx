@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BinCollection, supabase } from './lib/supabase';
+import { BinCollection, supabase, supabaseConfigured } from './lib/supabase';
 import { MirrorPreview } from './components/MirrorPreview';
 import { BinManager } from './components/BinManager';
 import { Sparkles, Loader2 } from 'lucide-react';
@@ -10,6 +10,13 @@ export default function App() {
   const [error, setError] = useState<string | null>(null);
 
   async function load() {
+    if (!supabaseConfigured) {
+      setError(
+        'Supabase environment variables are missing. Restart the dev server so Vite can read .env (VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY).'
+      );
+      setLoading(false);
+      return;
+    }
     setLoading(true);
     const { data, error } = await supabase
       .from('bin_collections')

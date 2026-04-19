@@ -19,9 +19,9 @@ interface BinEntry {
 }
 
 const BIN_COLOR_MAP: Record<string, string> = {
-  recycling: "purple",
-  recycle: "purple",
-  mixed: "purple",
+  recycling: "blue",
+  recycle: "blue",
+  mixed: "blue",
   paper: "blue",
   cardboard: "blue",
   glass: "green",
@@ -29,11 +29,11 @@ const BIN_COLOR_MAP: Record<string, string> = {
   food: "brown",
   organic: "brown",
   compost: "brown",
-  general: "black",
-  refuse: "black",
-  rubbish: "black",
-  household: "black",
-  waste: "black",
+  general: "purple",
+  refuse: "purple",
+  rubbish: "purple",
+  household: "purple",
+  waste: "purple",
 };
 
 function inferBinColor(name: string): string {
@@ -171,8 +171,8 @@ Deno.serve(async (req: Request) => {
         return nd.toISOString().slice(0, 10);
       };
       collections = [
-        { bin_type: "General Waste", bin_color: "black", collection_date: addDays(2) },
-        { bin_type: "Recycling", bin_color: "purple", collection_date: addDays(9) },
+        { bin_type: "General Waste", bin_color: "purple", collection_date: addDays(2) },
+        { bin_type: "Recycling", bin_color: "blue", collection_date: addDays(9) },
         { bin_type: "Garden Waste", bin_color: "green", collection_date: addDays(9) },
         { bin_type: "Food Waste", bin_color: "brown", collection_date: addDays(2) },
       ];

@@ -1,5 +1,5 @@
 export const BIN_PRESETS: Array<{ type: string; color: string; hex: string }> = [
-  { type: 'General Waste', color: 'black', hex: '#1f2937' },
+  { type: 'General Waste', color: 'purple', hex: '#7e22ce' },
   { type: 'Recycling', color: 'blue', hex: '#2563eb' },
   { type: 'Paper & Card', color: 'blue', hex: '#1d4ed8' },
   { type: 'Glass', color: 'green', hex: '#16a34a' },
@@ -23,6 +23,8 @@ export function hexForColor(color: string): string {
       return '#dc2626';
     case 'yellow':
       return '#ca8a04';
+    case 'purple':
+      return '#7e22ce';
     case 'gray':
     default:
       return '#6b7280';
@@ -36,5 +38,6 @@ export const COLOR_CHOICES = [
   { label: 'Brown', value: 'brown' },
   { label: 'Red', value: 'red' },
   { label: 'Yellow', value: 'yellow' },
+  { label: 'Purple', value: 'purple' },
   { label: 'Gray', value: 'gray' },
 ];

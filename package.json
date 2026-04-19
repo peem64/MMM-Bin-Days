@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "MagicMirror module that displays upcoming household bin collections, backed by Supabase.",
   "main": "MMM-Bin-Days.js",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

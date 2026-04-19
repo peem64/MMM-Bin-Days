@@ -2,6 +2,7 @@ import { BinCollection } from '../lib/supabase';
 import { formatFriendlyDate, daysUntil } from '../lib/dates';
 import { hexForColor } from '../lib/binColors';
 import { Trash2 } from 'lucide-react';
+import { WheelieBin } from './WheelieBin';
 
 type Props = {
   collections: BinCollection[];
@@ -58,9 +59,10 @@ export function MirrorPreview({ collections, maxCollections = 6 }: Props) {
                     key={bin.id}
                     className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs"
                   >
-                    <span
-                      className="w-2.5 h-2.5 rounded-full ring-1 ring-white/20"
-                      style={{ backgroundColor: hexForColor(bin.bin_color) }}
+                    <WheelieBin
+                      color={hexForColor(bin.bin_color)}
+                      size={16}
+                      title={bin.bin_type}
                     />
                     <span className="text-white/85">{bin.bin_type}</span>
                   </span>

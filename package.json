@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "MagicMirror module that displays upcoming household bin collections, backed by Supabase.",
   "main": "MMM-Bin-Days.js",
+  "type": "module",
   "scripts": {
-    "build": "node -e \"const fs=require('fs');['MMM-Bin-Days.js','MMM-Bin-Days.css','node_helper.js'].forEach(f=>{if(!fs.existsSync(f))throw new Error('Missing '+f);});console.log('MMM-Bin-Days: all module files present.');\""
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "check-module": "node -e \"const fs=require('fs');['MMM-Bin-Days.js','MMM-Bin-Days.css','node_helper.js'].forEach(f=>{if(!fs.existsSync(f))throw new Error('Missing '+f);});console.log('MMM-Bin-Days: all module files present.');\""
   },
   "keywords": [
     "MagicMirror",
@@ -18,5 +23,21 @@
   "license": "MIT",
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.4",
+    "lucide-react": "^0.344.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.18",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.2"
   }
 }
